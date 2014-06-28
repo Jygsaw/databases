@@ -20,11 +20,12 @@ dbConnection.connect(function(err) {
  * See https://github.com/felixge/node-mysql for more details about
  * using this module.*/
 
-exports.selectAllMsgs = function() {
+exports.selectAllMsgs = function(callback) {
   console.log("selectAllMsgs:");
   dbConnection.query('SELECT * FROM messages', function (err, result) {
     if (err) throw err;
     console.log(JSON.stringify(result));
+    callback(result);
   });
 };
 

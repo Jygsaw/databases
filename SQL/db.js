@@ -22,10 +22,9 @@ dbConnection.connect(function(err) {
 
 exports.selectAllMsgs = function(callback) {
   console.log("selectAllMsgs:");
-  dbConnection.query('SELECT * FROM messages', function (err, result) {
+  dbConnection.query('SELECT * FROM messages JOIN users ON messages.id_users = users.id JOIN chatrooms ON messages.id_chatrooms = chatrooms.id', function (err, result) {
     if (err) throw err;
     console.log(JSON.stringify(result));
     callback(result);
   });
 };
-
